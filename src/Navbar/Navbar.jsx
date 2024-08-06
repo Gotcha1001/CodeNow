@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebaseConfig/firebase';
+import { auth, db } from '../firebaseConfig/firebase';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import '../CustomCss/navbar.css'
 
 const Navbar = () => {
@@ -13,18 +14,53 @@ const Navbar = () => {
     const navigate = useNavigate();
     const adminEmail = "admin@example.com";
 
+    //added state for userName and surname to fetch
+    const [userDetails, setUserDetails] = useState(null);
+
+
+
     //drop down menu code share state
     const [isCodeShareDropdownOpen, setIsCodeShareDropdownOpen] = useState(false);
     const codeShareDropdownRef = useRef(null);
 
+
     useEffect(() => {
         clickSoundRef.current = new Audio("/Put.mp3");
 
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            if (currentUser) {
+                setUser(currentUser);
+                if (currentUser.providerData[0].providerId === 'google.com') {
+                    setUserDetails({
+                        firstName: currentUser.displayName,
+                        lastName: ''
+                    });
+                } else {
+                    try {
+                        const usersRef = collection(db, 'users');
+                        const q = query(usersRef, where('uid', '==', currentUser.uid));
+                        const querySnapshot = await getDocs(q);
+                        if (!querySnapshot.empty) {
+                            const userDoc = querySnapshot.docs[0].data();
+                            setUserDetails(userDoc);
+                        } else {
+                            console.log("No such document!");
+                            setUserDetails(null);
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user details:", error);
+                        setUserDetails(null);
+                    }
+                }
+            } else {
+                setUser(null);
+                setUserDetails(null);
+            }
         });
+
         return () => unsubscribe();
     }, []);
+
 
     const playClickSound = () => {
         clickSoundRef.current.play();
@@ -113,7 +149,7 @@ const Navbar = () => {
                                             Admin Actions
                                         </button>
                                         {isAdminDropdownOpen && (
-                                            <ul className="absolute bg-gray-800 text-white rounded mt-2 shadow-lg" onMouseEnter={() => setIsAdminDropdownOpen(true)} onMouseLeave={() => setIsAdminDropdownOpen(false)}>
+                                            <ul className="absolute bg-gray-800 text-white rounded mt-2 shadow-lg" >
                                                 <li>
                                                     <NavLink
                                                         to="video-upload"
@@ -159,25 +195,46 @@ const Navbar = () => {
                                         About Us
                                     </NavLink>
                                 </li>
-                                <li className="md:mr-4 my-2 md:my-0">
+                                <li className="md:mr-4 my-2 md:my-0 shadow-neon p-2  rounded-lg">
                                     <NavLink to="portfolio" onClick={playClickSound} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Portfolio
                                     </NavLink>
                                 </li>
-                                <li className="md:mr-4 my-2 md:my-0">
+                                <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
                                     <NavLink to="pricing" onClick={playClickSound} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Pricing
                                     </NavLink>
                                 </li>
+                                {/* <li className="md:mr-4 my-2 md:my-0">
+                                    <NavLink to="website-design-form" onClick={playClickSound} className={({ isActive }) =>
+                                        isActive ? "active-link" : ""
+                                    }>
+                                        Website Form
+                                    </NavLink>
+                                </li> */}
                                 <li className="md:mr-4 my-2 md:my-0">
                                     <NavLink to="contact-us" onClick={playClickSound} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Contact Us
+                                    </NavLink>
+                                </li>
+                                <li className="md:mr-4 my-2 md:my-0">
+                                    <NavLink to="pdf-form" onClick={playClickSound} className={({ isActive }) =>
+                                        isActive ? "active-link" : ""
+                                    }>
+                                        PDF Form
+                                    </NavLink>
+                                </li>
+                                <li className="md:mr-4 my-2 md:my-0">
+                                    <NavLink to="cv" onClick={playClickSound} className={({ isActive }) =>
+                                        isActive ? "active-link" : ""
+                                    }>
+                                        CV
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0">
@@ -195,16 +252,16 @@ const Navbar = () => {
                                     </NavLink>
                                 </li>
                                 <div className="relative navbar-element" ref={codeShareDropdownRef}>
-                                    <button onClick={toggleCodeShareDropdown} className="bg-black rounded-md p-2 hover:text-blue-500">
+                                    <button onClick={toggleCodeShareDropdown} className="bg-black rounded-md p-2 hover:text-blue-500 ">
                                         Code Sharing
                                     </button>
                                     {isCodeShareDropdownOpen && (
-                                        <ul className="custom-dropdown" onMouseEnter={() => setIsCodeShareDropdownOpen(true)} onMouseLeave={() => setIsCodeShareDropdownOpen(false)}>
+                                        <ul className="absolute bg-gray-800 text-white rounded mt-2 shadow-lg" >
                                             <li>
                                                 <NavLink
                                                     to="sharing-code"
                                                     className={({ isActive }) =>
-                                                        isActive ? "active-link" : ""
+                                                        isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                     }
                                                     onClick={playClickSound}
                                                 >
@@ -215,7 +272,7 @@ const Navbar = () => {
                                                 <NavLink
                                                     to="submit-code-share"
                                                     className={({ isActive }) =>
-                                                        isActive ? "active-link" : ""
+                                                        isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                     }
                                                     onClick={playClickSound}
                                                 >
@@ -235,10 +292,21 @@ const Navbar = () => {
                                     </NavLink>
                                 </li>
 
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <span className="text-white bg-teal-600 p-1 rounded-full mb-3 md:mb-0">{`Welcome, ${user.email}`}</span>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0">
+
+                                {userDetails && (
+                                    <li>
+                                        {userDetails.firstName ? (
+                                            <span className="welcome-message text-white bg-teal-600 rounded-full p-2 md:mb-0">
+                                                Welcome {userDetails.firstName} {userDetails.lastName}
+                                            </span>
+                                        ) : (
+                                            <span className="welcome-message text-white bg-teal-600 rounded-full p-2 md:mb-0">
+                                                Welcome {user.email}
+                                            </span>
+                                        )}
+                                    </li>
+                                )}
+                                <li className="md:mr-4 my-2 md:my-0 shadow-sky p-2 rounded-md">
                                     <button onClick={logout} className="text-white hover:text-blue-500">
                                         Logout
                                     </button>

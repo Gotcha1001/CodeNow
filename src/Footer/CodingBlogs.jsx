@@ -109,19 +109,19 @@ export default function CodingBlogs() {
             )}
             <div className="relative z-10 w-full p-4">
                 <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black rounded-md zoom">Coding Blogs</h1>
-                {/* Add your Coding Blogs content here */}
                 {isAdmin && (
-                    <button
-                        className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
-                        onClick={openBackgroundDialog}
-                    >
-                        Change Background Video
-                    </button>
+                    <div className="flex justify-center mt-8">
+                        <button
+                            className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
+                            onClick={openBackgroundDialog}
+                        >
+                            Change Background Video
+                        </button>
+                    </div>
                 )}
-
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11">
                     {blogLinks.map((blog, index) => (
-                        <div key={index} className="gradient-background2 zoom rounded-lg neon-teal p-6 hover:shadow-xl transition duration-300">
+                        <div key={index} className="block p-6 max-w-sm rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom">
                             <a href={blog.url} target="_blank" rel="noopener noreferrer" className="text-lg font-semibold text-white hover:underline">
                                 {blog.name}
                             </a>

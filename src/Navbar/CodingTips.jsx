@@ -135,15 +135,18 @@ export default function CodingTips() {
                     </div>
                 </div>
 
-                {userEmail === 'admin@example.com' && (
-                    <button
-                        className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300 mt-8"
-                        onClick={openBackgroundDialog}
-                    >
-                        Change Background Video
-                    </button>
-                )}
+                <div className="flex justify-center">
+                    {userEmail === 'admin@example.com' && (
+                        <button
+                            className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300 mt-8"
+                            onClick={openBackgroundDialog}
+                        >
+                            Change Background Video
+                        </button>
+                    )}
+                </div>
             </div>
+
 
             {showBackgroundDialog && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">

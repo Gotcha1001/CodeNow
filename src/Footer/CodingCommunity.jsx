@@ -110,14 +110,17 @@ export default function CodingCommunity() {
             )}
             <div className="relative z-10 w-full p-4">
                 <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black rounded-md zoom">Coding Community</h1>
-                {isAdmin && (
-                    <button
-                        className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
-                        onClick={openBackgroundDialog}
-                    >
-                        Change Background Video
-                    </button>
-                )}
+                <div className="flex justify-center mt-8">
+                    {isAdmin && (
+                        <button
+                            className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
+                            onClick={openBackgroundDialog}
+                        >
+                            Change Background Video
+                        </button>
+                    )}
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
                     {communityLinks.map((link, index) => (
                         <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 max-w-sm  rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom">

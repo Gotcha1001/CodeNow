@@ -3,7 +3,7 @@ import { doc, getDoc, updateDoc, setDoc, collection, getDocs } from 'firebase/fi
 import { db } from '../firebaseConfig/firebase'; // Adjust the path if needed
 import Spinner from '../SpecialSetups/Spinner'; // Adjust the path if needed
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import '../CustomCss/sharingcode.css'
+import '../CustomCss/sharingcode.css';
 
 export default function SharingCode() {
     const [backgroundVideoUrl, setBackgroundVideoUrl] = useState('');
@@ -13,6 +13,8 @@ export default function SharingCode() {
     const [codeShares, setCodeShares] = useState([]);
     const [sharesLoading, setSharesLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false); // New state for admin check
+    const [currentPage, setCurrentPage] = useState(1); // State for current page
+    const [sharesPerPage] = useState(5); // Number of shares per page
 
     const auth = getAuth();
 
@@ -33,6 +35,9 @@ export default function SharingCode() {
                 setLoading(false);
             }
         };
+
+
+
 
         const fetchCodeShares = async () => {
             try {
@@ -69,6 +74,11 @@ export default function SharingCode() {
         return () => unsubscribe(); // Clean up the listener on component unmount
     }, [auth]);
 
+    useEffect(() => {
+        console.log("Scrolling to top due to page change:", currentPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentPage]);
+
     const openBackgroundDialog = () => {
         setShowBackgroundDialog(true);
     };
@@ -101,7 +111,6 @@ export default function SharingCode() {
         }
     };
 
-
     const incrementLikes = async (id, currentLikes) => {
         try {
             // Safeguard against undefined likes
@@ -119,6 +128,14 @@ export default function SharingCode() {
         }
     };
 
+    // Pagination logic
+    const indexOfLastShare = currentPage * sharesPerPage;
+    const indexOfFirstShare = indexOfLastShare - sharesPerPage;
+    const currentShares = codeShares.slice(indexOfFirstShare, indexOfLastShare);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const nextPage = () => setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(codeShares.length / sharesPerPage)));
+    const prevPage = () => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
 
     if (loading || sharesLoading) {
         return <Spinner />;
@@ -136,14 +153,16 @@ export default function SharingCode() {
                 />
             )}
             <div className="relative z-10 w-full p-4">
-                <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black rounded-md zoom">Sharing Code</h1>
+                <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center rounded-md zoom">Sharing Code</h1>
                 {isAdmin && ( // Conditionally render the button based on isAdmin state
-                    <button
-                        className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
-                        onClick={openBackgroundDialog}
-                    >
-                        Change Background Video
-                    </button>
+                    <div className="flex justify-center mt-8">
+                        <button
+                            className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
+                            onClick={openBackgroundDialog}
+                        >
+                            Change Background Video
+                        </button>
+                    </div>
                 )}
             </div>
 
@@ -173,16 +192,16 @@ export default function SharingCode() {
                     </div>
                 </div>
             )}
+
             <div className="p-4 w-full max-w-3xl mx-auto mt-8 relative z-10">
-                <h2 className="text-2xl font-bold mb-4 text-white">Approved Code Shares</h2>
                 <ul>
-                    {console.log('Rendering Shares:', codeShares)}
-                    {codeShares.length ? (
-                        codeShares.map(share => (
+                    {console.log('Rendering Shares:', currentShares)}
+                    {currentShares.length ? (
+                        currentShares.map(share => (
                             <li key={share.id} className="mb-4 p-4 gradient-background2 text-white rounded shadow">
                                 <h3 className="text-xl font-bold mb-4">Title: {share.title || 'No Title'}</h3>
                                 <p className='shadow-neon m-3 p-2 rounded-md pre-wrap'>{share.content || 'No Content'}</p>
-                                <p className="text-sm  mt-5 text-white ">Posted by: {share.userName || 'Unknown'}</p>
+                                <p className="text-sm mt-5 text-white">Posted by: {share.userName || 'Unknown'}</p>
                                 {share.picUrl ? (
                                     <img src={share.picUrl} alt="Code Related" className="my-2 rounded max-w-full h-auto" />
                                 ) : (
@@ -203,7 +222,54 @@ export default function SharingCode() {
                         <p className="text-white">No code shares available.</p>
                     )}
                 </ul>
+
+                {/* Pagination controls */}
+                <Pagination
+                    sharesPerPage={sharesPerPage}
+                    totalShares={codeShares.length}
+                    paginate={paginate}
+                    nextPage={nextPage}
+                    prevPage={prevPage}
+                    currentPage={currentPage}
+                />
             </div>
         </div>
     );
 }
+
+// Pagination component
+const Pagination = ({ sharesPerPage, totalShares, paginate, nextPage, prevPage, currentPage }) => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= Math.ceil(totalShares / sharesPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    return (
+        <div className="flex justify-center mt-8">
+            <button
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-teal-600 ml-2 text-white rounded-md hover:bg-teal-700 transition duration-300 disabled:opacity-50"
+            >
+                Previous
+            </button>
+            {pageNumbers.length > 0 && (
+                <button
+                    className={`px-4 py-2 bg-white ml-2 rounded-md text-black ${pageNumbers.length === 1 ? 'opacity-50' : ''} rounded-t hover:bg-teal-600 transition duration-300`}
+                    onClick={() => paginate(currentPage)}
+                >
+                    {currentPage}
+                </button>
+            )}
+            <button
+                onClick={nextPage}
+                disabled={currentPage === pageNumbers.length}
+                className="px-4 py-2 ml-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition duration-300 disabled:opacity-50"
+            >
+                Next
+            </button>
+        </div>
+    );
+};
+

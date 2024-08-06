@@ -107,11 +107,12 @@ export default function ModernCoding() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {communityLinks.map((link, index) => (
-                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 rounded-lg border  border-gray-200  neon-teal hover:bg-gray-100 transition duration-300">
-                            <h2 className="text-2xl font-bold mb-2   text-white">{link.title}</h2>
+                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 max-w-sm rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom">
+                            <h2 className="text-2xl font-bold mb-2 text-white">{link.title}</h2>
                             <p className="text-gray-600">{link.tips}</p>
                         </a>
                     ))}
+
                 </div>
 
                 {isAdmin && (

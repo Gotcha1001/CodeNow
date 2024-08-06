@@ -24,6 +24,10 @@ import CodingCommunity from './Footer/CodingCommunity';
 import VideoAlter from './Navbar/VideoAlter';
 import AdminApproveCodeShare from './Navbar/AdminApproveCodeShare';
 import SubmitCodeShare from './Navbar/SubmitCodeShare';
+import WebsiteDesignForm from './Navbar/WebsiteDesignForm';
+import PDFForm from './Navbar/PDFForm';
+import Cv from './Navbar/Cv';
+import Certificates from './Components/Certificates';
 
 
 const router = createBrowserRouter([
@@ -37,28 +41,25 @@ const router = createBrowserRouter([
       { path: 'register', element: <Register /> },
       { path: 'video-upload', element: <VideoUpload /> },
       { path: 'data-protection', element: <DataProtectionPolicy /> },
-
       { path: 'about-us', element: <AboutUs /> },
       { path: 'pricing', element: <Pricing /> },
-
-
       { path: 'sharing-code', element: <SharingCode /> },
       { path: 'admin-approve-codeshare', element: <AdminApproveCodeShare /> },
       { path: 'submit-code-share', element: <SubmitCodeShare /> },
-
-
-
-
       { path: 'testimony', element: <Testimony /> },
       { path: 'contact-us', element: <ContactUs /> },
       { path: 'portfolio', element: <Portfolio /> },
-
       { path: 'coding-videos', element: <CodingVideos /> },
       { path: 'code-tips', element: <CodingTips /> },
       { path: 'modern-coding', element: <ModernCoding /> },
       { path: 'coding-blogs', element: <CodingBlogs /> },
       { path: 'coding-community', element: <CodingCommunity /> },
       { path: 'video-alter', element: <VideoAlter /> },
+      { path: 'website-design-form', element: <WebsiteDesignForm /> },
+      { path: 'pdf-form', element: <PDFForm /> },
+      { path: 'cv', element: <Cv /> },
+      { path: 'certificates', element: <Certificates /> },
+
 
     ],
   },

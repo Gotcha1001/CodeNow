@@ -141,13 +141,16 @@ export default function Testimony() {
                 </div>
 
                 {isAdmin && (
-                    <button
-                        className="mt-8 px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
-                        onClick={openBackgroundDialog}
-                    >
-                        Change Background Video
-                    </button>
+                    <div className="flex justify-center mt-8">
+                        <button
+                            className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
+                            onClick={openBackgroundDialog}
+                        >
+                            Change Background Video
+                        </button>
+                    </div>
                 )}
+
             </div>
 
             {showBackgroundDialog && (

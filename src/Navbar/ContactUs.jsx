@@ -4,6 +4,7 @@ import { db } from '../firebaseConfig/firebase';
 import Spinner from '../SpecialSetups/Spinner'; // Adjust the path if needed
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { getAuth } from 'firebase/auth';
+import DownloadPDFButton from '../Navbar/PDFForm'; // Adjust the path if needed
 
 export default function ContactUs() {
     const [backgroundVideoUrl, setBackgroundVideoUrl] = useState('');
@@ -97,51 +98,66 @@ export default function ContactUs() {
             )}
             <div className="relative z-10 w-full p-4">
                 <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black rounded-md zoom">Contact Us</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                    <div className="bg-purple-800 text-white p-6 rounded-lg gradient-background2 transition duration-300 shadow-sunset">
-                        <h2 className="text-2xl font-semibold mb-2">Contact Information</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mb-8 justify-center items-center">
+                    <div className="bg-purple-800 text-white p-6 rounded-lg gradient-background2 transition duration-300 shadow-sunset col-span-1 lg:col-span-1 max-w-md mx-auto">
+                        <h2 className="text-2xl font-semibold mb-2 text-center zoom bg-black p-3 rounded-lg">Contact Information</h2>
                         <p className="text-xl mb-4">Email: <a href="mailto:WesleyOlivier443@gmail.com" className="text-blue-400 hover:underline">CodeNow101@gmail.com</a></p>
                         <p className="text-xl mb-4">Phone: <a href="tel:+2780077368" className="text-blue-400 hover:underline">+27 80077368</a></p>
                         <p className="text-xl mb-4">Address: 110 Manfred Drive, Park Hill, Durban North</p>
                     </div>
-                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-sunset gradient-background2 transition duration-300">
-                        <h2 className="text-2xl font-semibold mb-2">Banking Details</h2>
+
+                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-sunset gradient-background2 transition duration-300 col-span-1 lg:col-span-1 max-w-md mx-auto">
+                        <h2 className="text-2xl font-semibold mb-2 text-center zoom bg-black p-3 rounded-lg">Banking Details</h2>
                         <p className="text-xl mb-4">Bank: Standard Bank</p>
                         <p className="text-xl mb-4">Account Number: 251884783</p>
                         <p className="text-xl mb-4">Account Holder: MR WW OLIVIER</p>
                         <p className="text-xl mb-4">Branch Code: 051001</p>
                         <p className="text-xl mb-4">SWIFT Code: SBZAZAJJ</p>
                     </div>
-                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-sunset gradient-background2 transition duration-300 col-span-1 lg:col-span-2">
-                        <h2 className="text-2xl font-semibold mb-2">Find Us on the Map</h2>
-                        <div className="aspect-w-16 aspect-h-9">
-                            <iframe
-                                title="Google Map"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3462.3823989203297!2d31.02028487635248!3d-29.795492019778077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef706fd3a56cb79%3A0xdc374e25b6940870!2s110%20Manfred%20Dr%2C%20Park%20Hill%2C%20Durban%20North%2C%204051!5e0!3m2!1sen!2sza!4v1722203864219!5m2!1sen!2sza"
-                                className="w-full h-full rounded-lg"
-                                allowFullScreen
-                                loading="lazy"
-                            ></iframe>
+
+                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-sunset hover:bg-purple-600 transition duration-300 col-span-1 lg:col-span-2 max-w-lg mx-auto">
+                        <h2 className="text-2xl font-semibold  text-center zoom mb-3">Follow Us</h2>
+                        <div className="flex justify-center space-x-4">
+                            <a
+                                href="https://www.facebook.com/profile.php?id=61563719426651"
+                                className="text-blue-600 hover:text-blue-800 animate-bounce"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaFacebook size={40} />
+                            </a>
+                            <a
+                                href="https://www.instagram.com/codenow101?igsh=MWsyMWs1ZGRwYzc2cg=="
+                                className="text-pink-600 hover:text-pink-800 animate-bounce"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaInstagram size={40} />
+                            </a>
+                            <a
+                                href="https://wa.me/27780077368"
+                                className="text-green-500 hover:text-green-700 animate-bounce"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaWhatsapp size={40} />
+                            </a>
                         </div>
                     </div>
-                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-teal hover:bg-purple-600 transition duration-300 col-span-1 lg:col-span-2">
-                        <h2 className="text-2xl font-semibold mb-2">Follow Us</h2>
-                        <div className="flex space-x-4">
-                            <a href="https://facebook.com/yourpage" className="text-blue-600 hover:text-blue-800"><FaFacebook size={24} /></a>
-                            <a href="https://twitter.com/yourpage" className="text-blue-400 hover:text-blue-600"><FaTwitter size={24} /></a>
-                            <a href="https://instagram.com/yourpage" className="text-pink-600 hover:text-pink-800"><FaInstagram size={24} /></a>
-                            <a href="https://linkedin.com/in/yourpage" className="text-blue-700 hover:text-blue-900"><FaLinkedin size={24} /></a>
-                            <a href="https://wa.me/27835429381" className="text-green-500 hover:text-green-700"><FaWhatsapp size={24} /></a>
-                        </div>
+                    <div className="col-span-1 lg:col-span-2 text-center max-w-lg mx-auto">
+                        <DownloadPDFButton />
                     </div>
+
                 </div>
                 {isAdmin && (
-                    <button
-                        className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
-                        onClick={openBackgroundDialog}
-                    >
-                        Change Background Video
-                    </button>
+                    <div className="flex justify-center mt-8">
+                        <button
+                            className="px-4 py-2 bg-indigo-800 text-white rounded-md hover:bg-green-600 transition duration-300"
+                            onClick={openBackgroundDialog}
+                        >
+                            Change Background Video
+                        </button>
+                    </div>
                 )}
             </div>
 
@@ -173,4 +189,5 @@ export default function ContactUs() {
             )}
         </div>
     );
+
 }

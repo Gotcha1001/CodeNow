@@ -108,7 +108,7 @@ export default function Portfolio() {
                 <p className="text-white text-center mb-8">These are my projects and apps I have built. Click on the projects to view their beauty and functionality:</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 
-                    <a href="https://cancer-friends.vercel.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://cancer-friends.vercel.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 1</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Cancer Friends</p>
                         <p className="mt-2 text-center">A social media platform for cancer patients to communicate and support each other.</p>
@@ -123,7 +123,10 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://josh-art-site.vercel.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+
+
+
+                    <a href="https://josh-art-site.vercel.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 2</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Art business for a friend I made.</p>
                         <p className="mt-2 text-center">Helping small businesses get recognized with a professional platform.</p>
@@ -138,7 +141,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://secret-blogpost.web.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://secret-blogpost.web.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 3</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Secret Diary I made for fun.</p>
                         <p className="mt-2 text-center">Document your life in a user-friendly manner without anyone finding your personal diary.</p>
@@ -153,7 +156,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://recipe-app-acd06.web.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://recipe-app-acd06.web.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 4</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Store your recipes for traveling.</p>
                         <p className="mt-2 text-center">A fun way to store your secret recipes or share them with the world, great for traveling.</p>
@@ -168,7 +171,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://church-vite-app-new-firebase-file.vercel.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://church-vite-app-new-firebase-file.vercel.app/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 5</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Website I made for my church, full first proper FULL STACK WEBSITE.</p>
                         <p className="mt-2 text-center">A full-stack app for my dad's church to display daily scripture posts and videos, and allows users to contact the minister or church with ease.</p>
@@ -182,7 +185,7 @@ export default function Portfolio() {
                         </div>
                     </a>
 
-                    <a href="https://gotcha1001.github.io/Zordiac/index.html" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/Zordiac/index.html" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 6</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Website I made for a daily random reading with over a 1000 quotes.</p>
                         <p className="mt-2 text-center">One of my earliest projects I made with plain simple HTML and some JavaScript code in the early days, But I like it.</p>
@@ -197,7 +200,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://gotcha1001.github.io/Random-Scripture/index.html" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/Random-Scripture/index.html" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 7</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Website I made for a daily random scripture from the Bible and selected random scripture of a topic of choice.</p>
                         <p className="mt-2 text-center">One of my earliest projects I made with plain simple HTML and some JavaScript code in the early days, But I like it as well.</p>
@@ -212,7 +215,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://gotcha1001.github.io/PianoNoClick/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/PianoNoClick/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 8</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">Website I made as a game for piano music lovers in the early days.</p>
                         <p className="mt-2 text-center">One of my earliest projects I made with plain simple HTML and some JavaScript code in the early days, But I like it as well.</p>
@@ -227,7 +230,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://gotcha1001.github.io/RiddleAPIHTML/ " target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/RiddleAPIHTML/ " target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 9</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">One of my early projects consuming a API with Daily Riddles.</p>
                         <p className="mt-2 text-center">A fun little app that displays daily riddles for the whole family to contemplate on.</p>
@@ -242,7 +245,7 @@ export default function Portfolio() {
                     </a>
 
 
-                    <a href="https://gotcha1001.github.io/sex2/index.html" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/sex2/index.html" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 10</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">One the early simple HTML Javascraipt projects, Sex App.</p>
                         <p className="mt-2 text-center">A App that is build to boost well being as a human and improve your sex life.</p>
@@ -260,7 +263,7 @@ export default function Portfolio() {
 
 
 
-                    <a href="https://gotcha1001.github.io/Foodapp/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/Foodapp/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 11</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">A random Food App that calculates what you should cook for the comming week .</p>
                         <p className="mt-2 text-center">A fun App that I designed long ago , also a good example of perseverence, as this is such a novice App.</p>
@@ -273,7 +276,7 @@ export default function Portfolio() {
                             />
                         </div>
                     </a>
-                    <a href="https://gotcha1001.github.io/CvResponsive/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon hover:bg-purple-600 transition duration-300">
+                    <a href="https://gotcha1001.github.io/CvResponsive/" target="_blank" rel="noopener noreferrer" className="block p-6 gradient-background2 text-white rounded-lg shadow-neon opacity-90 hover:opacity-100 hover:bg-purple-600 transition duration-300">
                         <h2 className="text-xl font-semibold text-center">Project 12</h2>
                         <p className="mt-2 shadow-teal rounded-lg p-1 text-center">A total begginer project with my CV and responsiveness</p>
                         <p className="mt-2 text-center">I am proud that this was my CV created long ago and how far I have come with design</p>

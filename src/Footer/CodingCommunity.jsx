@@ -84,7 +84,6 @@ export default function CodingCommunity() {
         return <Spinner />;
     }
 
-
     const communityLinks = [
         { title: 'Daily Dev Blog: General Programming Communities to Join', url: 'https://daily.dev/blog/general-programming-communities-to-join' },
         { title: 'Code Institute: What\'s the Coding Community Like?', url: 'https://codeinstitute.net/global/blog/whats-the-coding-community-like/' },
@@ -97,6 +96,7 @@ export default function CodingCommunity() {
         { title: 'Codedamn: Best Online Coding Communities to Join', url: 'https://codedamn.com/news/programming/best-online-coding-communities-to-join' },
         { title: 'Reddit: r/programming', url: 'https://www.reddit.com/r/programming/' },
     ];
+
     return (
         <div className="relative flex flex-col justify-center items-center min-h-screen p-4 overflow-hidden">
             {backgroundVideoUrl && (
@@ -109,7 +109,9 @@ export default function CodingCommunity() {
                 />
             )}
             <div className="relative z-10 w-full p-4">
-                <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black rounded-md zoom">Coding Community</h1>
+                <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center bg-black bg-opacity-50 p-8 rounded-md shadow-lg">
+                    Coding Community
+                </h1>
                 <div className="flex justify-center mt-8">
                     {isAdmin && (
                         <button
@@ -123,7 +125,7 @@ export default function CodingCommunity() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
                     {communityLinks.map((link, index) => (
-                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 max-w-sm  rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom">
+                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 max-w-sm rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom">
                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{link.title}</h5>
                         </a>
                     ))}

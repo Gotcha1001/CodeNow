@@ -63,23 +63,22 @@
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 1683px) {
   .footer {
-    flex-direction: column;
-    padding: 10px;
+    flex-direction: row; /* Ensure footer items are in a row */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    justify-content: center; /* Center items horizontally */
   }
 
   .footer-links {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center; /* Center links horizontally */
+    flex-wrap: wrap; /* Ensure links wrap to the next line if necessary */
+    white-space: nowrap; /* Prevent wrapping of individual links */
   }
 
   .footer-links li {
-    margin: 5px 0;
-  }
-
-  .footer-links a {
-    font-size: 1.2rem;
+    margin: 0 15px; /* Adjust margin between links */
   }
 }
 
@@ -103,15 +102,6 @@
 
   .footer-links a {
     font-size: 0.9rem; /* Adjust font size for better fit */
-  }
-
-  .footer-upload-link {
-    margin-left: auto; /* Ensure upload link stays to the right */
-  }
-
-  .footer-social-icon {
-    display: inline-block; /* Ensure social icons are visible and inline */
-    margin-top: 10px; /* Add space above social icons */
   }
 }
 
@@ -137,10 +127,6 @@
     font-size: 1rem; /* Adjust font size for better fit */
   }
 
-  .footer-upload-link {
-    margin: 10px 0; /* Add space above and below the upload link */
-  }
-
   .footer-social-icon {
     display: block; /* Ensure social icons stack vertically */
     margin: 10px 0; /* Add space above and below social icons */
@@ -151,5 +137,21 @@
   .footer-links li {
     margin: 5px 0; /* Adjust margin between links */
     margin-left: 45px; /* Adjust margin between links */
+  }
+}
+
+@media (max-width: 608px) {
+  .footer {
+    flex-direction: column; /* Stack footer items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .footer-links {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center links horizontally */
+  }
+
+  .footer-links li {
+    margin: 10px 0; /* Adjust margin between links for proper spacing */
   }
 }

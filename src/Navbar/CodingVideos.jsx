@@ -3,7 +3,7 @@ import { collection, getDocs, updateDoc, doc, getDoc } from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase';
 import VideoEmbed from '../SpecialSetups/VideoEmbeded';
 import Spinner from '../SpecialSetups/Spinner';
-import Pagination from '../specialsetups/Pagination';
+import Pagination from '../SpecialSetups/Pagination';
 import { getAuth } from 'firebase/auth';
 
 const VideoDisplay = () => {

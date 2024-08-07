@@ -18,7 +18,6 @@ const Navbar = () => {
     const [userDetails, setUserDetails] = useState(null);
 
 
-
     //drop down menu code share state
     const [isCodeShareDropdownOpen, setIsCodeShareDropdownOpen] = useState(false);
     const codeShareDropdownRef = useRef(null);
@@ -101,6 +100,12 @@ const Navbar = () => {
 
     const toggleCodeShareDropdown = () => { setIsCodeShareDropdownOpen(!isCodeShareDropdownOpen); };
 
+    const handleLinkClick = () => {
+        playClickSound();
+        setIsMenuOpen(false);
+    };
+
+
     return (
         <nav className="navbar bg-gray-800 text-white py-4">
             <div className="container mx-auto flex flex-col md:flex-row md:justify-between items-center">
@@ -131,7 +136,7 @@ const Navbar = () => {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="2"
-                            d="M4 6h16M4 12h16m-7 6h7"
+                            d="M4 6h16M4 12h16M4 18h16"
                         />
                     </svg>
                 </button>
@@ -156,7 +161,7 @@ const Navbar = () => {
                                                         className={({ isActive }) =>
                                                             isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                         }
-                                                        onClick={playClickSound}
+                                                        onClick={handleLinkClick}
                                                     >
                                                         Video Upload
                                                     </NavLink>
@@ -167,7 +172,7 @@ const Navbar = () => {
                                                         className={({ isActive }) =>
                                                             isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                         }
-                                                        onClick={playClickSound}
+                                                        onClick={handleLinkClick}
                                                     >
                                                         Video Alter
                                                     </NavLink>
@@ -178,7 +183,7 @@ const Navbar = () => {
                                                         className={({ isActive }) =>
                                                             isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                         }
-                                                        onClick={playClickSound}
+                                                        onClick={handleLinkClick}
                                                     >
                                                         Approve Code Share
                                                     </NavLink>
@@ -189,21 +194,21 @@ const Navbar = () => {
                                 )}
 
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="about-us" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="about-us" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         About Us
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0 shadow-neon p-2  rounded-lg">
-                                    <NavLink to="portfolio" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="portfolio" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Portfolio
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
-                                    <NavLink to="pricing" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="pricing" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Pricing
@@ -217,35 +222,35 @@ const Navbar = () => {
                                     </NavLink>
                                 </li> */}
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="contact-us" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="contact-us" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Contact Us
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="pdf-form" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="pdf-form" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         PDF Form
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="cv" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="cv" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         CV
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="testimony" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="testimony" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Testimony
                                     </NavLink>
                                 </li>
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="coding-videos" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="coding-videos" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Coding Videos
@@ -263,7 +268,7 @@ const Navbar = () => {
                                                     className={({ isActive }) =>
                                                         isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                     }
-                                                    onClick={playClickSound}
+                                                    onClick={handleLinkClick}
                                                 >
                                                     Sharing Code
                                                 </NavLink>
@@ -274,7 +279,7 @@ const Navbar = () => {
                                                     className={({ isActive }) =>
                                                         isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
                                                     }
-                                                    onClick={playClickSound}
+                                                    onClick={handleLinkClick}
                                                 >
                                                     Submit Code Sharing
                                                 </NavLink>
@@ -285,7 +290,7 @@ const Navbar = () => {
 
 
                                 <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="code-tips" onClick={playClickSound} className={({ isActive }) =>
+                                    <NavLink to="code-tips" onClick={handleLinkClick} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
                                     }>
                                         Code Tips
@@ -294,9 +299,9 @@ const Navbar = () => {
 
 
                                 {userDetails && (
-                                    <li>
+                                    <li className="mb-4 custom-mb-0">
                                         {userDetails.firstName ? (
-                                            <span className="welcome-message text-white bg-teal-600 rounded-full p-2 md:mb-0">
+                                            <span className="welcome-message text-white mr-2  bg-teal-600 rounded-full p-2 md:mb-0">
                                                 Welcome {userDetails.firstName} {userDetails.lastName}
                                             </span>
                                         ) : (
@@ -306,6 +311,7 @@ const Navbar = () => {
                                         )}
                                     </li>
                                 )}
+
                                 <li className="md:mr-4 my-2 md:my-0 shadow-sky p-2 rounded-md">
                                     <button onClick={logout} className="text-white hover:text-blue-500">
                                         Logout
@@ -317,7 +323,7 @@ const Navbar = () => {
                                 <li className="md:mr-4 my-2 md:my-0">
                                     <NavLink
                                         to="register"
-                                        onClick={playClickSound}
+                                        onClick={handleLinkClick}
                                         className="text-white hover:text-blue-500"
                                         activeClassName="active-link"
                                     >
@@ -327,7 +333,7 @@ const Navbar = () => {
                                 <li className="md:mr-4 my-2 md:my-0">
                                     <NavLink
                                         to="login"
-                                        onClick={playClickSound}
+                                        onClick={handleLinkClick}
                                         className="text-white hover:text-blue-500"
                                         activeClassName="active-link"
                                     >

@@ -26,21 +26,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.navbar-title a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.navbar-title a:hover {
-  color: #cccccc;
-}
-
 .navbar-links {
   list-style-type: none;
   padding: 0;
@@ -57,6 +42,7 @@
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
+  margin-right: 10px;
 }
 
 .navbar-links a:hover {
@@ -77,10 +63,6 @@
     flex-direction: column;
     padding: 10px;
     align-items: center;
-  }
-
-  .navbar-title {
-    margin-bottom: 10px;
   }
 
   .navbar-links {
@@ -148,23 +130,9 @@
     margin-bottom: 10px;
   }
 
-  .upload-link {
-    margin-left: auto;
-  }
-
   .navbar-social-icon {
     display: inline-block;
     margin-top: 10px;
-  }
-
-  .logout-button {
-    background-color: red;
-    color: white;
-    padding: 2px 6px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
   }
 
   .active-link {
@@ -172,6 +140,9 @@
     color: white !important;
     padding: 4px;
     border-radius: 4px;
+  }
+  .welcome-message {
+    margin-bottom: 20px;
   }
 }
 
@@ -200,21 +171,9 @@
     font-size: 0.9rem;
   }
 
-  .upload-link {
-    margin-left: auto;
-  }
-
   .navbar-social-icon {
     display: inline-block;
     margin-top: 10px;
-  }
-
-  .logout-button {
-    background-color: red;
-    color: white;
-    padding: 4px 8px;
-    border: none;
-    border-radius: 4px;
   }
 }
 .absolute {
@@ -264,4 +223,11 @@
   margin-top: 5px;
   padding: 2px;
   margin-bottom: 5px;
+}
+
+/* Custom CSS */
+@media (min-width: 770px) {
+  .custom-mb-0 {
+    margin-bottom: 0 !important;
+  }
 }

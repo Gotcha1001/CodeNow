@@ -1,3 +1,4 @@
+
 // Login.jsx
 import React, { useEffect, useState } from "react";
 import {
@@ -9,6 +10,7 @@ import {
     onAuthStateChanged,
 } from "../firebaseConfig/firebase";
 import { useNavigate, Link } from "react-router-dom";
+import axios from 'axios'; // Import Axios
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -56,14 +58,37 @@ const Login = () => {
         }
     };
 
-
-
     const googleProvider = new GoogleAuthProvider();
     const signInWithGoogle = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            console.log("Google Sign-In successful:", user);
+
+            // Send user email to MailerLite
+            const response = await axios.post(
+                'https://connect.mailerlite.com/api/subscribers',
+                {
+                    email: user.email,
+                    fields: {
+                        name: user.displayName,
+                    },
+                    groups: ["128641737161704712"], // Group ID as a string
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZmMxNTA4ZjYyNjg2NTYwZGVkODBlOGIxZjYxMzY1NTc5ZWQ3NTJmMDYyYjI4NzA5NzlhNDVkMzY3MTNiZGM1Nzc2OWZjNzdmMDhjZjE2ZTIiLCJpYXQiOjE3MjI5NjU4MTguMjg2ODA2LCJuYmYiOjE3MjI5NjU4MTguMjg2ODA3LCJleHAiOjQ4Nzg2Mzk0MTguMjg0MzY0LCJzdWIiOiIxMDU4MDM5Iiwic2NvcGVzIjpbXX0.C7f3Ees3buuF7Kz348u_psytcUspR2nUoAkj1E2Lnw5OoSs-YFvn0sPtzhIty13s8wKZ7uAxP4CjgYWvDlxyfIL-UZg91bdJykkSi8q2B0DAqMPHKfa5oy4ACQZbTTTxQUfAvgrqWwF-02ORpGeFrG8-rSNzKiK7ItkYbbxZpjawj9XjwXWkk6so1tFD-0AlaaQyekKRNYk9DEerx9EzdGv0w6ckn2IjYc5DcnP9DXZDKRm9LA0VwVJNNFMjV3Jr-n236I7z2GJ7Yc6kLzot_Vg_QahnSYkAvslt7iTeh6GBJBaRtRLhb5HOVeM3sQIR-KfELew5_Qs8PtmAWFmJFYnF5aCVXMyELQTtmANyI5E_cOElmw7rcYJIiyaxUxCIXewsUCCmvsI2a07P4t_saqK7uYD1Cv0b_nsQeI9Qllt_-bDjzSbZKNACcL4tivIh_daaURZ2bucXnCeObePwDfEkjyv-_i_VAyc-194njCTEdJfhp4tFP2ktr4sOeznk8KtNEYj3mZ0naGtdF2yq6tZaisVccDz7W1TL-wD4mPsGF_hE6v4ZXwCSJX_p5BWlVyTNJzy1Vv4xSv-wdDMsmVTwt0-P9iSECNUgLqkHRdU2oqOi1wAlryH26pFsYhvmJHaTtxgtUZJlEcibLaE5On11DQwZ1HIX0GK0XJW9A5U'
+                    }
+                }
+            );
+
+            console.log("MailerLite response:", response);
+
+            navigate("/");
         } catch (error) {
-            console.error(error);
+            console.error("Error during Google sign-in:", error);
         }
     };
 
@@ -86,12 +111,21 @@ const Login = () => {
         setPassword("");
     }, [user]);
 
+    // Function to capitalize each word in the user's name
+    const capitalizeName = (name) => {
+        if (!name) return "";
+        return name
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ");
+    };
+
     return (
         <div className="flex h-screen items-center justify-center bg-gradient-to-r from-black via-red-500 to-yellow-600">
             {user ? (
                 <div className="text-center">
                     <h2 className="mb-4 text-xl font-bold text-white">
-                        Welcome, {user.email}
+                        Welcome, {user.displayName ? capitalizeName(user.displayName) : user.email}
                     </h2>
                     <button
                         className="rounded-sm bg-teal-500 px-6 py-3 text-lg text-teal-100 hover:bg-teal-700"
@@ -171,5 +205,4 @@ const Login = () => {
 };
 
 export default Login;
-
 

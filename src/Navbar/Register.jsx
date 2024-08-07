@@ -7,7 +7,10 @@ import {
     sendEmailVerification,
     signOut,
 } from "../firebaseConfig/firebase";
+import axios from "axios";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { collection, addDoc } from "firebase/firestore"; // Add these imports
+import { db } from "../firebaseConfig/firebase"; // Ensure you import your Firestore instance
 import '../CustomCss/reCAPTCHA.css'; // Ensure your styles are imported
 
 export default function Register() {
@@ -55,7 +58,38 @@ export default function Register() {
                 displayName: `${firstName} ${lastName}`,
             });
 
+            // Save user details to Firestore
+            const userRef = collection(db, "users");
+            await addDoc(userRef, {
+                uid: user.uid,
+                firstName,
+                lastName,
+            });
+
+
+
+            // Add user to MailerLite
+            await axios.post(
+                'https://connect.mailerlite.com/api/subscribers',
+                {
+                    email: email,
+                    fields: {
+                        name: `${firstName} ${lastName}`,
+                        gender: gender,
+                        dateOfBirth: dateOfBirth,
+                    },
+                    groups: ["128641737161704712"], // Group ID as a string
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZmMxNTA4ZjYyNjg2NTYwZGVkODBlOGIxZjYxMzY1NTc5ZWQ3NTJmMDYyYjI4NzA5NzlhNDVkMzY3MTNiZGM1Nzc2OWZjNzdmMDhjZjE2ZTIiLCJpYXQiOjE3MjI5NjU4MTguMjg2ODA2LCJuYmYiOjE3MjI5NjU4MTguMjg2ODA3LCJleHAiOjQ4Nzg2Mzk0MTguMjg0MzY0LCJzdWIiOiIxMDU4MDM5Iiwic2NvcGVzIjpbXX0.C7f3Ees3buuF7Kz348u_psytcUspR2nUoAkj1E2Lnw5OoSs-YFvn0sPtzhIty13s8wKZ7uAxP4CjgYWvDlxyfIL-UZg91bdJykkSi8q2B0DAqMPHKfa5oy4ACQZbTTTxQUfAvgrqWwF-02ORpGeFrG8-rSNzKiK7ItkYbbxZpjawj9XjwXWkk6so1tFD-0AlaaQyekKRNYk9DEerx9EzdGv0w6ckn2IjYc5DcnP9DXZDKRm9LA0VwVJNNFMjV3Jr-n236I7z2GJ7Yc6kLzot_Vg_QahnSYkAvslt7iTeh6GBJBaRtRLhb5HOVeM3sQIR-KfELew5_Qs8PtmAWFmJFYnF5aCVXMyELQTtmANyI5E_cOElmw7rcYJIiyaxUxCIXewsUCCmvsI2a07P4t_saqK7uYD1Cv0b_nsQeI9Qllt_-bDjzSbZKNACcL4tivIh_daaURZ2bucXnCeObePwDfEkjyv-_i_VAyc-194njCTEdJfhp4tFP2ktr4sOeznk8KtNEYj3mZ0naGtdF2yq6tZaisVccDz7W1TL-wD4mPsGF_hE6v4ZXwCSJX_p5BWlVyTNJzy1Vv4xSv-wdDMsmVTwt0-P9iSECNUgLqkHRdU2oqOi1wAlryH26pFsYhvmJHaTtxgtUZJlEcibLaE5On11DQwZ1HIX0GK0XJW9A5U'
+                    }
+                }
+            );
+
             await sendEmailVerification(user);
+
 
             setFirstName("");
             setLastName("");
@@ -158,6 +192,18 @@ export default function Register() {
                                 />
                                 Female
                             </label>
+                            <label className="flex items-center text-white">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="other"
+                                    className="mr-2"
+                                    checked={gender === "other"}
+                                    onChange={(e) => setGender(e.target.value)}
+                                    required
+                                />
+                                Other
+                            </label>
                         </div>
                     </div>
                     <div className="mb-4 text-left">
@@ -202,13 +248,13 @@ export default function Register() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                            <div
-                                className="absolute inset-y-0 right-0 flex items-center px-2"
+                            <button
+                                type="button"
+                                className="absolute right-2 top-2 text-gray-400"
                                 onClick={toggleShowPassword}
-                                style={{ cursor: "pointer" }}
                             >
                                 {showPassword ? <FiEyeOff /> : <FiEye />}
-                            </div>
+                            </button>
                         </div>
                     </div>
                     <div className="mb-4 text-left">
@@ -225,36 +271,40 @@ export default function Register() {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
                             />
-                            <div
-                                className="absolute inset-y-0 right-0 flex items-center px-2"
+                            <button
+                                type="button"
+                                className="absolute right-2 top-2 text-gray-400"
                                 onClick={toggleShowConfirmPassword}
-                                style={{ cursor: "pointer" }}
                             >
                                 {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
-                            </div>
+                            </button>
                         </div>
                     </div>
-                    <div className="mb-4 text-left flex items-center space-x-2">
-                        <input
-                            type="checkbox"
-                            id="terms"
-                            className="custom-checkbox"
-                            checked={termsAccepted}
-                            onChange={handleCheckboxChange}
-                            required
-                        />
-                        <label htmlFor="terms" className="text-sm font-medium text-white">
-                            I accept the terms and conditions
+                    <div className="mb-4 text-left">
+                        <label className="flex items-center text-white">
+                            <input
+                                type="checkbox"
+                                className="mr-2"
+                                checked={termsAccepted}
+                                onChange={handleCheckboxChange}
+                                required
+                            />
+                            I accept the <a href="/terms" className="text-blue-500 underline">terms and conditions</a>
                         </label>
                     </div>
                     <button
                         type="submit"
-                        className="w-full rounded-md bg-gradient-to-r from-green-400 to-green-600 py-2 px-4 font-semibold text-white hover:from-green-500 hover:to-green-700"
+                        className="w-full rounded-md bg-blue-500 py-2 text-white transition duration-200 hover:bg-blue-600"
                     >
                         Register
                     </button>
                 </form>
+                <p className="mt-4 text-white">
+                    Already have an account? <a href="/login" className="text-blue-500 underline">Login</a>
+                </p>
             </div>
         </div>
     );
 }
+
+

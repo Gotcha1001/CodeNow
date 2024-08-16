@@ -148,9 +148,6 @@
     padding: 4px;
     border-radius: 4px;
   }
-  .welcome-message {
-    margin-bottom: 20px;
-  }
 }
 
 @media (min-width: 1338px) and (max-width: 1679px) {

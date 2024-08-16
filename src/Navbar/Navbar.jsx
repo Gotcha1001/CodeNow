@@ -184,34 +184,34 @@ const Navbar = () => {
                                     </NavLink>
                                 </li> */}
 
-                        <li className="md:mr-4 my-2 md:my-0">
+                        {/* <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="about-us" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 About Us
                             </NavLink>
-                        </li>
-                        <li className="md:mr-4 my-2 md:my-0">
+                        </li> */}
+                        {/* <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="cv" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 CV
                             </NavLink>
-                        </li>
-                        <li className="md:mr-4 my-2 md:my-0">
+                        </li> */}
+                        {/* <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="testimony" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 Testimony
                             </NavLink>
-                        </li>
-                        <li className="md:mr-4 my-2 md:my-0">
+                        </li> */}
+                        {/* <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="coding-videos" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 Coding Videos
                             </NavLink>
-                        </li>
+                        </li> */}
                         <div className="relative navbar-element" ref={codeShareDropdownRef}>
                             <button onClick={toggleCodeShareDropdown} className="bg-black rounded-md p-1 hover:text-blue-500 ">
                                 Code Sharing
@@ -245,13 +245,13 @@ const Navbar = () => {
                         </div>
 
 
-                        <li className="md:mr-4 my-2 md:my-0">
+                        {/* <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="code-tips" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 Code Tips
                             </NavLink>
-                        </li>
+                        </li> */}
                         {user ? (
                             <>
                                 {user.email === adminEmail && (
@@ -303,18 +303,19 @@ const Navbar = () => {
 
 
                                 {userDetails && (
-                                    <li className="mb-4 custom-mb-0">
+                                    <li className="mb-0 ">
                                         {userDetails.firstName ? (
-                                            <span className="welcome-message text-white mr-2  bg-teal-600 rounded-full p-2 md:mb-0">
+                                            <span className="welcome-message text-teal-500 font-bold animate-pulse  rounded-full p-1">
                                                 Welcome {userDetails.firstName} {userDetails.lastName}
                                             </span>
                                         ) : (
-                                            <span className="welcome-message text-white bg-teal-600 rounded-full p-2 md:mb-0">
+                                            <span className="welcome-message text-teal-500  rounded-full p-2">
                                                 Welcome {user.email}
                                             </span>
                                         )}
                                     </li>
                                 )}
+
 
                                 <li className="md:mr-4 my-2 md:my-0 shadow-sky p-2 rounded-md">
                                     <button onClick={logout} className="text-white hover:text-blue-500">
@@ -357,7 +358,7 @@ const Navbar = () => {
                     {/* Social Icons */}
                     <div className="flex flex-wrap justify-center md:justify-end space-x-2 mt-4 md:mt-0">
                         <a
-                            href="https://www.facebook.com/yourprofile"
+                            href="https://www.facebook.com/profile.php?id=61563719426651"
                             className="text-blue-600 hover:text-blue-800 animate-bounce"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -365,7 +366,7 @@ const Navbar = () => {
                             <FaFacebook size={40} />
                         </a>
                         <a
-                            href="https://www.instagram.com/yourprofile"
+                            href="https://www.instagram.com/codenow101?igsh=MWsyMWs1ZGRwYzc2cg=="
                             className="text-pink-600 hover:text-pink-800 animate-bounce"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -373,7 +374,7 @@ const Navbar = () => {
                             <FaInstagram size={40} />
                         </a>
                         <a
-                            href="https://wa.me/yourphonenumber"
+                            href="https://wa.me/27780077368"
                             className="text-green-500 hover:text-green-700 animate-bounce"
                             target="_blank"
                             rel="noopener noreferrer"

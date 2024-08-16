@@ -28,7 +28,9 @@ import WebsiteDesignForm from './Navbar/WebsiteDesignForm';
 import PDFForm from './Navbar/PDFForm';
 import Cv from './Navbar/Cv';
 import Certificates from './Components/Certificates';
-
+import PaymentSuccess from './payments/PaymentSuccess';
+import PaymentCancel from './payments/PaymentCancel';
+import PaymentNotify from './payments/PaymentNotify';
 
 const router = createBrowserRouter([
   {
@@ -60,7 +62,9 @@ const router = createBrowserRouter([
       { path: 'cv', element: <Cv /> },
       { path: 'certificates', element: <Certificates /> },
 
-
+      { path: '/payment-success', element: <PaymentSuccess /> },
+      { path: '/payment-cancel', element: <PaymentCancel /> },
+      { path: '/payment-notify', element: <PaymentNotify /> },
     ],
   },
 ]);

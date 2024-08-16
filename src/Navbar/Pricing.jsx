@@ -3,6 +3,7 @@ import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig/firebase';
 import Spinner from '../SpecialSetups/Spinner'; // Adjust the path if needed
 import { getAuth } from 'firebase/auth'; // Import getAuth from Firebase
+import PayNowButton from '../payments/PayNowButton';
 
 export default function Pricing() {
     const [backgroundVideoUrl, setBackgroundVideoUrl] = useState('');
@@ -96,7 +97,7 @@ export default function Pricing() {
             <div className="relative z-10 w-full max-w-xl p-4">
                 <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black p-3 rounded-md zoom shadow-neon">Pricing</h1>
                 <div className="grid grid-cols-1 gap-6 mb-8">
-                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-neon gradient-background2 transition duration-300 text-center ">
+                    <div className="bg-purple-800 text-white p-6 rounded-lg shadow-neon gradient-background2 transition duration-300 text-center">
                         <h2 className="text-2xl font-semibold mb-2 bg-black rounded-md p-3">Package 1</h2>
                         <p className="text-xl font-bold">2 Pages</p>
                         <p className="text-xl mb-4">1000 Rand</p>
@@ -114,13 +115,21 @@ export default function Pricing() {
                         <p className="text-xl mb-4">5000 Rand</p>
                         <p className="text-white">Great for businesses needing extensive information and features.</p>
                     </div>
+
                     <div className="bg-purple-800 text-white p-6 rounded-lg shadow-neon gradient-background2 transition duration-300 text-center">
-                        <h2 className="text-2xl font-semibold mb-2 shadow-sky  p-3 bg-black rounded-md ">Hosting Charges</h2>
-                        <p className="text-xl font-bold ">Per Month</p>
+                        <h2 className="text-2xl font-semibold mb-2 shadow-sky  p-3 bg-black rounded-md">Hosting Charges</h2>
+                        <p className="text-xl font-bold">Per Month</p>
                         <p className="text-xl mb-4">200 Rand</p>
                         <p className="text-white">Reliable hosting to keep your website running smoothly.</p>
                     </div>
+                    <div className="bg-gray-800 p-6 rounded-lg text-center mt-8">
+                        <h2 className="text-xl font-bold mb-4">Link to our Account Directly with Payfast</h2>
+                        <div className="flex justify-center">
+                            <PayNowButton />
+                        </div>
+                    </div>
                 </div>
+
                 {isAdmin && ( // Conditionally render the button
                     <div className="flex justify-center">
                         <button
@@ -131,7 +140,6 @@ export default function Pricing() {
                         </button>
                     </div>
                 )}
-
             </div>
 
             {showBackgroundDialog && (

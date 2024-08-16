@@ -3,6 +3,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebaseConfig/firebase';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import '../CustomCss/navbar.css'
 
 const Navbar = () => {
@@ -146,6 +147,111 @@ const Navbar = () => {
                     className={`flex-col md:flex md:flex-row md:items-center md:space-x-4 ${isMenuOpen ? 'block' : 'hidden'} md:block`}
                 >
                     <ul className="navbar-links flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+
+                        <li className="md:mr-4 my-2 md:my-0  p-2  rounded-lg">
+                            <NavLink to="portfolio" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Portfolio
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="contact-us" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Contact Us
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="pdf-form" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                PDF Form
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
+                            <NavLink to="pricing" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Pricing
+                            </NavLink>
+                        </li>
+                        {/* <li className="md:mr-4 my-2 md:my-0">
+                                    <NavLink to="website-design-form" onClick={playClickSound} className={({ isActive }) =>
+                                        isActive ? "active-link" : ""
+                                    }>
+                                        Website Form
+                                    </NavLink>
+                                </li> */}
+
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="about-us" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                About Us
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="cv" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                CV
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="testimony" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Testimony
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="coding-videos" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Coding Videos
+                            </NavLink>
+                        </li>
+                        <div className="relative navbar-element" ref={codeShareDropdownRef}>
+                            <button onClick={toggleCodeShareDropdown} className="bg-black rounded-md p-1 hover:text-blue-500 ">
+                                Code Sharing
+                            </button>
+                            {isCodeShareDropdownOpen && (
+                                <ul className="absolute bg-gray-800 text-white rounded mt-2 shadow-lg" >
+                                    <li>
+                                        <NavLink
+                                            to="sharing-code"
+                                            className={({ isActive }) =>
+                                                isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
+                                            }
+                                            onClick={handleLinkClick}
+                                        >
+                                            Sharing Code
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink
+                                            to="submit-code-share"
+                                            className={({ isActive }) =>
+                                                isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
+                                            }
+                                            onClick={handleLinkClick}
+                                        >
+                                            Submit Code Sharing
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+
+
+                        <li className="md:mr-4 my-2 md:my-0">
+                            <NavLink to="code-tips" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Code Tips
+                            </NavLink>
+                        </li>
                         {user ? (
                             <>
                                 {user.email === adminEmail && (
@@ -193,109 +299,7 @@ const Navbar = () => {
                                     </div>
                                 )}
 
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="about-us" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        About Us
-                                    </NavLink>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0 shadow-neon p-2  rounded-lg">
-                                    <NavLink to="portfolio" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Portfolio
-                                    </NavLink>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
-                                    <NavLink to="pricing" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Pricing
-                                    </NavLink>
-                                </li>
-                                {/* <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="website-design-form" onClick={playClickSound} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Website Form
-                                    </NavLink>
-                                </li> */}
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="contact-us" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Contact Us
-                                    </NavLink>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="pdf-form" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        PDF Form
-                                    </NavLink>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="cv" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        CV
-                                    </NavLink>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="testimony" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Testimony
-                                    </NavLink>
-                                </li>
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="coding-videos" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Coding Videos
-                                    </NavLink>
-                                </li>
-                                <div className="relative navbar-element" ref={codeShareDropdownRef}>
-                                    <button onClick={toggleCodeShareDropdown} className="bg-black rounded-md p-2 hover:text-blue-500 ">
-                                        Code Sharing
-                                    </button>
-                                    {isCodeShareDropdownOpen && (
-                                        <ul className="absolute bg-gray-800 text-white rounded mt-2 shadow-lg" >
-                                            <li>
-                                                <NavLink
-                                                    to="sharing-code"
-                                                    className={({ isActive }) =>
-                                                        isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
-                                                    }
-                                                    onClick={handleLinkClick}
-                                                >
-                                                    Sharing Code
-                                                </NavLink>
-                                            </li>
-                                            <li>
-                                                <NavLink
-                                                    to="submit-code-share"
-                                                    className={({ isActive }) =>
-                                                        isActive ? "active-link text-white block px-4 py-2" : "text-white block px-4 py-2"
-                                                    }
-                                                    onClick={handleLinkClick}
-                                                >
-                                                    Submit Code Sharing
-                                                </NavLink>
-                                            </li>
-                                        </ul>
-                                    )}
-                                </div>
 
-
-                                <li className="md:mr-4 my-2 md:my-0">
-                                    <NavLink to="code-tips" onClick={handleLinkClick} className={({ isActive }) =>
-                                        isActive ? "active-link" : ""
-                                    }>
-                                        Code Tips
-                                    </NavLink>
-                                </li>
 
 
                                 {userDetails && (
@@ -324,7 +328,7 @@ const Navbar = () => {
                                     <NavLink
                                         to="register"
                                         onClick={handleLinkClick}
-                                        className="text-white hover:text-blue-500"
+                                        className="text-now font-bold hover:text-blue-500"
                                         activeClassName="active-link"
                                     >
                                         Register
@@ -334,17 +338,55 @@ const Navbar = () => {
                                     <NavLink
                                         to="login"
                                         onClick={handleLinkClick}
-                                        className="text-white hover:text-blue-500"
+                                        className="text-now font-bold hover:text-blue-500"
                                         activeClassName="active-link"
                                     >
                                         Login
                                     </NavLink>
                                 </li>
+
                             </>
                         )}
                     </ul>
+
                 </div>
+                {/* Social Icons */}
+                <div className="flex flex-col md:flex-row md:justify-between items-center">
+                    {/* Other content */}
+
+                    {/* Social Icons */}
+                    <div className="flex flex-wrap justify-center md:justify-end space-x-2 mt-4 md:mt-0">
+                        <a
+                            href="https://www.facebook.com/yourprofile"
+                            className="text-blue-600 hover:text-blue-800 animate-bounce"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaFacebook size={40} />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/yourprofile"
+                            className="text-pink-600 hover:text-pink-800 animate-bounce"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaInstagram size={40} />
+                        </a>
+                        <a
+                            href="https://wa.me/yourphonenumber"
+                            className="text-green-500 hover:text-green-700 animate-bounce"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaWhatsapp size={40} />
+                        </a>
+                    </div>
+                </div>
+
+
+
             </div>
+
         </nav>
     );
 

@@ -45,6 +45,11 @@
   margin-right: 10px;
 }
 
+.navbar-links .text-now {
+  color: rgb(57, 57, 230);
+  font-weight: bold;
+}
+
 .navbar-links a:hover {
   color: #06b6d4;
 }
@@ -55,6 +60,8 @@
   color: white !important;
   padding: 6px;
   border-radius: 4px;
+  text-align: center;
+  font-style: italic;
 }
 
 /* Media Queries */
@@ -230,4 +237,9 @@
   .custom-mb-0 {
     margin-bottom: 0 !important;
   }
+}
+
+/* Custom shadow class */
+.shadow-neon {
+  box-shadow: 0 0 10px #00ff99; /* Example neon shadow */
 }

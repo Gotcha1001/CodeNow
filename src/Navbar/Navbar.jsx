@@ -155,6 +155,20 @@ const Navbar = () => {
                                 Portfolio
                             </NavLink>
                         </li>
+                        <li className="md:mr-4 my-2 md:my-0  p-2  rounded-lg">
+                            <NavLink to="about-us" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                About us
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0  p-2  rounded-lg">
+                            <NavLink to="cv" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                CV
+                            </NavLink>
+                        </li>
                         <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="contact-us" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
@@ -162,13 +176,13 @@ const Navbar = () => {
                                 Contact Us
                             </NavLink>
                         </li>
-                        <li className="md:mr-4 my-2 md:my-0">
+                        {/* <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="pdf-form" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 PDF Form
                             </NavLink>
-                        </li>
+                        </li> */}
                         <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
                             <NavLink to="pricing" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
@@ -176,6 +190,21 @@ const Navbar = () => {
                                 Pricing
                             </NavLink>
                         </li>
+                        <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
+                            <NavLink to="modern-coding" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Modern Coding
+                            </NavLink>
+                        </li>
+                        <li className="md:mr-4 my-2 md:my-0 shadow-blue p-2  rounded-lg">
+                            <NavLink to="code-tips" onClick={handleLinkClick} className={({ isActive }) =>
+                                isActive ? "active-link" : ""
+                            }>
+                                Coding Tips
+                            </NavLink>
+                        </li>
+
                         {/* <li className="md:mr-4 my-2 md:my-0">
                                     <NavLink to="website-design-form" onClick={playClickSound} className={({ isActive }) =>
                                         isActive ? "active-link" : ""
@@ -205,13 +234,13 @@ const Navbar = () => {
                                 Testimony
                             </NavLink>
                         </li> */}
-                        {/* <li className="md:mr-4 my-2 md:my-0">
+                        <li className="md:mr-4 my-2 md:my-0">
                             <NavLink to="coding-videos" onClick={handleLinkClick} className={({ isActive }) =>
                                 isActive ? "active-link" : ""
                             }>
                                 Coding Videos
                             </NavLink>
-                        </li> */}
+                        </li>
                         <div className="relative navbar-element" ref={codeShareDropdownRef}>
                             <button onClick={toggleCodeShareDropdown} className="bg-black rounded-md p-1 hover:text-blue-500 ">
                                 Code Sharing

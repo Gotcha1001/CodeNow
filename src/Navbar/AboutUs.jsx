@@ -3,6 +3,7 @@ import { Carousel } from "react-bootstrap";
 import { auth, db } from "../firebaseConfig/firebase";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import Spinner from "../SpecialSetups/Spinner";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
     const adminEmail = "admin@example.com";
@@ -125,11 +126,17 @@ const AboutUs = () => {
                 </h1>
 
                 <div className="w-full max-w-lg mb-8 z-10 flex justify-center">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        // style={{
+                        //     transformOrigin: "center",
+
+                        // }}
                         src={mainImageUrl}
                         alt="Main"
                         className="rounded-lg shadow-neon"
-                        style={{ width: "400px", height: "300px", objectFit: "cover" }} // Fixed size
+                        style={{ width: "400px", height: "300px", objectFit: "cover", transformOrigin: "center" }} // Fixed size
                     />
                 </div>
             </div>
@@ -146,6 +153,30 @@ const AboutUs = () => {
                         </p>
                     </div>
                     <div className="flex flex-col md:flex-row gap-8 shadow-neon rounded-lg p-1 md:p-5">
+
+                        <div className="md:w-1/2">
+                            <div className="bg-black shadow-sky mt-3 mr-3 ml-3 rounded-lg p-6 mb-8">
+                                <h2 className="text-3xl font-semibold text-white mb-4">Our Services</h2>
+                                <p className="text-base text-white mb-4">
+                                    We specialize in crafting custom-made websites for small businesses with responsive designs for all screen sizes. Our services include:
+                                </p>
+                                <ul className="list-disc pl-5 text-white mb-4">
+                                    <li>Responsive designs that look great on any device</li>
+                                    <li>Authentication and dynamic content</li>
+                                    <li>Video moving backgrounds</li>
+                                    <li>Functionality for users to change their homepage background or main image at will</li>
+                                    <li>Logo creation</li>
+                                    <li>Social media integration</li>
+                                    <li>Email functionality</li>
+                                    <li>Effective marketing strategies to boost online presence</li>
+                                    <li>Excellent communication and accessibility to the business owner</li>
+                                </ul>
+                                <p className="text-base text-white">
+                                    Let us help you make a lasting impression on the web and connect with your audience effectively.
+                                </p>
+                            </div>
+                        </div>
+
                         <div className="md:w-1/2 ">
                             <div className="bg-black shadow-sky mt-3 ml-3 mr-3 rounded-lg p-12 mb-8 ">
                                 <h2 className="text-3xl font-semibold text-white mb-4 ">Our Journey</h2>
@@ -157,17 +188,7 @@ const AboutUs = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="md:w-1/2">
-                            <div className="bg-black shadow-sky mt-3 mr-3 ml-3 rounded-lg p-6 mb-8">
-                                <h2 className="text-3xl font-semibold text-white mb-4">Our Services</h2>
-                                <p className="text-base text-white mb-4">
-                                    We specialize in crafting small business websites designed to showcase your services and products effectively. Whether you're looking to enhance your brand visibility, drive sales, or improve customer engagement, our tailored solutions can meet your unique needs.
-                                </p>
-                                <p className="text-base text-white mb-4">
-                                    From creating engaging landing pages to implementing comprehensive e-commerce solutions, we focus on delivering value and results for your business. Let us help you make a lasting impression on the web and connect with your audience.
-                                </p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>
@@ -199,21 +220,39 @@ const AboutUs = () => {
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 z-10 ">
                 <div className="h-64 overflow-hidden rounded-lg shadow-lg">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/8134609/pexels-photo-8134609.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork 1"
                     />
                 </div>
                 <div className="h-64 overflow-hidden rounded-lg shadow-lg z-10">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/4816921/pexels-photo-4816921.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork 2"
                     />
                 </div>
                 <div className="h-64 overflow-hidden rounded-lg shadow-lg z-10">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/5380659/pexels-photo-5380659.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork 3"

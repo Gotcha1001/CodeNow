@@ -101,6 +101,15 @@ export default function ProfileCard() {
                 </div>
 
                 <ProfileCardSection title="Personal Details">
+
+                    <div className='mt-8 text-center animate-bounce mb-10 '>
+                        <Link
+                            to='/certificates'
+                            className='bg-purple-600 text-white text-center p-3 rounded-lg  '
+                        >
+                            View My Certificates
+                        </Link>
+                    </div>
                     <ul className="space-y-2 bg-gray-900 p-4 rounded-lg shadow-md mb-8 hover:bg-black transition duration-300 ">
                         <li><strong>NAME:</strong> Wesley Wayne Olivier</li>
                         <li><strong>ADDRESS:</strong> 110 Manfred Drive, ParkHills, Durban North, 4051</li>

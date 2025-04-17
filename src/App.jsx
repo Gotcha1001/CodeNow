@@ -32,6 +32,7 @@ import PaymentSuccess from './payments/PaymentSuccess';
 import PaymentCancel from './payments/PaymentCancel';
 import PaymentNotify from './payments/PaymentNotify';
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -61,6 +62,9 @@ const router = createBrowserRouter([
       { path: 'pdf-form', element: <PDFForm /> },
       { path: 'cv', element: <Cv /> },
       { path: 'certificates', element: <Certificates /> },
+
+      ///////////////////Payfast test rout
+
 
       { path: '/payment-success', element: <PaymentSuccess /> },
       { path: '/payment-cancel', element: <PaymentCancel /> },

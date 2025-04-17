@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig/firebase'; // Adjust the path if needed
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { motion } from "framer-motion";
 
 export default function Certificates() {
     const [isAdmin, setIsAdmin] = useState(true); // Assuming admin is logged in
@@ -51,33 +52,81 @@ export default function Certificates() {
 
                 <p className="text-lg mb-6 font-serif animate-bounce text-center">Udemy certificates:</p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-14 w-full max-w-6xl">
-                    <img
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 w-full max-w-6xl">
+
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
+                        src="https://github.com/Gotcha1001/Images-2-Slimming/blob/main/React%20Cert.jpg?raw=true"
+                        alt="Certificate 1"
+                        className="rounded-lg border-4 border-purple-600 shadow-neon"
+                    />
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         src="https://github.com/Gotcha1001/My-Images-for-sites-Wes/blob/main/CertificatesFullStack.jpg?raw=true"
                         alt="Certificate 1"
                         className="rounded-lg border-4 border-purple-600 shadow-neon"
                     />
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         src="https://github.com/Gotcha1001/My-Images-for-sites-Wes/blob/main/CertificatesC%23Fundamentals.jpg?raw=true"
                         alt="Certificate 2"
                         className="rounded-lg border-4 border-purple-600 shadow-neon"
                     />
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         src="https://github.com/Gotcha1001/My-Images-for-sites-Wes/blob/main/CertificatesC%23Intermediate.jpg?raw=true"
                         alt="Certificate 3"
                         className="rounded-lg border-4 border-purple-600 shadow-neon"
                     />
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         src="https://github.com/Gotcha1001/My-Images-for-sites-Wes/blob/main/CertificatesC%23Advanced.jpg?raw=true"
                         alt="Certificate 4"
                         className="rounded-lg border-4 border-purple-600 shadow-neon"
                     />
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         src="https://github.com/Gotcha1001/My-Images-for-sites-Wes/blob/main/CertificatesC%23DatingApp.jpg?raw=true"
                         alt="Certificate 5"
                         className="rounded-lg border-4 border-purple-600 shadow-neon"
                     />
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         src="https://github.com/Gotcha1001/My-Images-for-sites-Wes/blob/main/CertificatesC%23ECommerce.jpg?raw=true"
                         alt="Certificate 6"
                         className="rounded-lg border-4 border-purple-600 shadow-neon"

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import { auth, db } from "../firebaseConfig/firebase";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 import Spinner from "../SpecialSetups/Spinner";
 
@@ -146,7 +147,7 @@ const Home = () => {
                 </>
             )}
 
-            <h1 className="gradient-background1 mb-8 rounded-full p-3 text-center text-3xl font-bold text-white hover:bg-teal-600 md:text-4xl">
+            <h1 className="z-50 gradient-background1 mb-8 rounded-full p-3 text-center text-3xl font-bold text-white hover:bg-teal-600 md:text-4xl">
                 CODE NOW
             </h1>
 
@@ -236,42 +237,78 @@ const Home = () => {
             {/* Artwork Grid */}
             <div className="mt-4 grid w-full grid-cols-1 gap-4 md:w-3/4 md:grid-cols-2 lg:grid-cols-3">
                 <div className="h-64 w-full transform overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="object-co h-full w-full"
                         src="https://images.pexels.com/photos/8134609/pexels-photo-8134609.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork"
                     />
                 </div>
                 <div className="h-64 w-full transform overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/4816921/pexels-photo-4816921.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork"
                     />
                 </div>
                 <div className="h-64 w-full transform overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/5380659/pexels-photo-5380659.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork"
                     />
                 </div>
                 <div className="h-64 w-full transform overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/5380649/pexels-photo-5380649.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork"
                     />
                 </div>
                 <div className="h-64 w-full transform overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork"
                     />
                 </div>
                 <div className="h-64 w-full transform overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img
+                    <motion.img
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ type: "spring", stiffness: 500 }}
+                        style={{
+                            transformOrigin: "center",
+
+                        }}
                         className="h-full w-full object-cover"
                         src="https://images.pexels.com/photos/97077/pexels-photo-97077.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="Artwork"

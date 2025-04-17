@@ -37,59 +37,20 @@ const Footer = () => {
                     </li>
                     <li className="mb-4 sm:mb-0">
                         <NavLink
-                            to="/about-us"
+                            to="/pdf-form"
                             onClick={playClickSound}
                             className={({ isActive }) =>
                                 isActive ? "active-footer-link text-gray-900 block" : "text-gray-700 hover:text-gray-900 block"
                             }
                         >
-                            About Us
+                            PDF Form
                         </NavLink>
                     </li>
-                    <li className="mb-4 sm:mb-0">
-                        <NavLink
-                            to="/cv"
-                            onClick={playClickSound}
-                            className={({ isActive }) =>
-                                isActive ? "active-footer-link text-gray-900 block" : "text-gray-700 hover:text-gray-900 block"
-                            }
-                        >
-                            CV
-                        </NavLink>
-                    </li>
-                    <li className="mb-4 sm:mb-0">
-                        <NavLink
-                            to="/coding-videos"
-                            onClick={playClickSound}
-                            className={({ isActive }) =>
-                                isActive ? "active-footer-link text-gray-900 block" : "text-gray-700 hover:text-gray-900 block"
-                            }
-                        >
-                            Coding Videos
-                        </NavLink>
-                    </li>
-                    <li className="mb-4 sm:mb-0">
-                        <NavLink
-                            to="modern-coding"
-                            onClick={playClickSound}
-                            className={({ isActive }) =>
-                                isActive ? "active-footer-link text-gray-900 block" : "text-gray-700 hover:text-gray-900 block"
-                            }
-                        >
-                            Modern Coding
-                        </NavLink>
-                    </li>
-                    <li className="mb-4 sm:mb-0">
-                        <NavLink
-                            to="code-tips"
-                            onClick={playClickSound}
-                            className={({ isActive }) =>
-                                isActive ? "active-footer-link text-gray-900 block" : "text-gray-700 hover:text-gray-900 block"
-                            }
-                        >
-                            Code Tips
-                        </NavLink>
-                    </li>
+
+
+
+
+
                     <li className="mb-4 sm:mb-0">
                         <NavLink
                             to="coding-blogs"

@@ -1,88 +1,117 @@
 import React, { useState } from 'react';
 
-const PayNowButton = () => {
-    const merchantId = '25048778'; // Your PayFast Merchant ID
-    const merchantKey = 'iumwgehqdvktq'; // Your PayFast Merchant Key
-    const baseUrl = import.meta.env.VITE_BASE_URL;
+const PaymentForm = ({ price, packageName, onCancel }) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        amount: price, // Set the amount to the package price
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const returnUrl = `${baseUrl}/payment-success`;
-    const cancelUrl = `${baseUrl}/payment-cancel`;
-    const notifyUrl = `${baseUrl}/payment-notify`;
-
-    const [selectedPackage, setSelectedPackage] = useState(null);
-    const [email, setEmail] = useState('');
-
-    const handlePackageSelect = (packageName, amount) => {
-        setSelectedPackage({ packageName, amount });
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await fetch('https://server-api-seven.vercel.app/api/payment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            if (result.paymentUrl) {
+                window.location.href = result.paymentUrl;
+            } else {
+                setError('Payment initiation failed');
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            setError('Something went wrong. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCancel = () => {
+        onCancel(); // Call the onCancel function passed as a prop
     };
 
     return (
-        <div className="flex flex-col items-center mt-8 space-y-4">
-            <div className="grid grid-cols-1 gap-4">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full relative">
                 <button
-                    onClick={() => handlePackageSelect('Package 1', '1000')}
-                    className="bg-purple-800 text-white py-3 px-6 rounded-lg"
+                    type="button"
+                    onClick={handleCancel}
+                    className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition duration-300"
                 >
-                    Package 1 - 1000 Rand
+                    &times;
                 </button>
-                <button
-                    onClick={() => handlePackageSelect('Package 2', '3000')}
-                    className="bg-purple-800 text-white py-3 px-6 rounded-lg"
-                >
-                    Package 2 - 3000 Rand
-                </button>
-                <button
-                    onClick={() => handlePackageSelect('Package 3', '5000')}
-                    className="bg-purple-800 text-white py-3 px-6 rounded-lg"
-                >
-                    Package 3 - 5000 Rand
-                </button>
-            </div>
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Make a Payment for {packageName}</h2>
 
-            {selectedPackage && (
-                <form
-                    name="PayFastPayNowForm"
-                    action="https://payment.payfast.io/eng/process"
-                    method="post"
-                    className="flex flex-col items-center mt-4"
-                >
-                    <input type="hidden" name="cmd" value="_paynow" />
-                    <input type="hidden" name="merchant_id" value={merchantId} />
-                    <input type="hidden" name="merchant_key" value={merchantKey} />
-                    <input type="hidden" name="receiver" pattern="[0-9]" value="15698630" />
-                    <input type="hidden" name="return_url" value={returnUrl} />
-                    <input type="hidden" name="cancel_url" value={cancelUrl} />
-                    <input type="hidden" name="notify_url" value={notifyUrl} />
-                    <input type="hidden" name="amount" value={selectedPackage.amount} />
-                    <input type="hidden" name="item_name" value={selectedPackage.packageName} />
-                    <input type="hidden" name="item_description" value={`${selectedPackage.packageName} payment`} />
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-semibold mb-2">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                        />
+                    </div>
 
-                    {/* Add the email field */}
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        required
-                        className="p-2 border rounded mb-4"
-                    />
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-semibold mb-2">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Your Email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-semibold mb-2">Amount</label>
+                        <input
+                            type="number"
+                            name="amount"
+                            value={formData.amount}
+                            readOnly
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                        />
+                    </div>
+
+                    {error && <p className="text-red-500 mb-4">{error}</p>}
 
                     <button
                         type="submit"
-                        className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
-                        style={{ minWidth: '200px' }}
+                        disabled={loading}
+                        className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
                     >
-                        Pay Now for {selectedPackage.packageName}
+                        {loading ? 'Processing...' : 'Pay Now'}
                     </button>
                 </form>
-            )}
+            </div>
         </div>
     );
 };
 
-export default PayNowButton;
+export default PaymentForm;

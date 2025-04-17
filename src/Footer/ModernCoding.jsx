@@ -103,16 +103,15 @@ export default function ModernCoding() {
                 />
             )}
             <div className="relative z-10 w-full p-4">
-                <h1 className="text-4xl font-bold text-white font-serif mb-8 text-center hover:bg-black rounded-md zoom">Modern Coding</h1>
+                <h1 className="text-4xl font-bold text-white font-serif text-center mb-12 hover:bg-black rounded-md zoom">Modern Coding</h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:text-center sm:justify-center sm:items-center">
                     {communityLinks.map((link, index) => (
-                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 max-w-sm rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom">
+                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 max-w-sm rounded-lg border border-black neon-emerald hover:bg-black transition duration-300 zoom mx-auto sm:mx-0">
                             <h2 className="text-2xl font-bold mb-2 text-white">{link.title}</h2>
                             <p className="text-gray-600">{link.tips}</p>
                         </a>
                     ))}
-
                 </div>
 
                 {isAdmin && (
@@ -126,6 +125,8 @@ export default function ModernCoding() {
                     </div>
                 )}
             </div>
+
+
 
             {showBackgroundDialog && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
